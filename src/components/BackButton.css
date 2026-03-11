@@ -1,0 +1,25 @@
+.global-back-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1100;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 16px;
+  background: linear-gradient(120deg, #0b4d95, #1b74cc);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 12px 22px rgba(9, 57, 111, 0.35);
+}
+
+@media (max-width: 680px) {
+  .global-back-btn {
+    right: 14px;
+    bottom: 14px;
+    padding: 10px 14px;
+  }
+}

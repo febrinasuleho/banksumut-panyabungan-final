@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 270" role="img" aria-label="Logo Bank Sumut">
+  <rect x="0" y="0" width="840" height="270" rx="8" fill="#3d57a1" />
+  <path d="M118 85C160 24 256 14 314 50" fill="none" stroke="#f48a2d" stroke-width="16" stroke-linecap="round" />
+  <path d="M127 99C171 40 258 34 302 65" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" />
+  <text x="28" y="188" font-family="Georgia, serif" font-size="118" fill="#f28a2a" font-weight="700">Bank</text>
+  <text x="300" y="188" font-family="Georgia, serif" font-size="118" fill="#ffffff" font-weight="700">SUMUT</text>
+  <text x="345" y="232" font-family="Georgia, serif" font-size="52" fill="#ffffff" font-weight="600">Memberikan Pelayanan Terbaik</text>
+</svg>

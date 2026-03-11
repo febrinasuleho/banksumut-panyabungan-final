@@ -1,0 +1,149 @@
+.navbar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, #01346f 0%, #02519b 100%);
+  box-shadow: 0 8px 20px rgba(0, 31, 74, 0.25);
+}
+
+.navbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.brand-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.brand-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px;
+}
+
+.brand-text {
+  display: grid;
+}
+
+.logo {
+  color: #ffffff;
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.4px;
+}
+
+.logo-sub {
+  margin: 2px 0 0;
+  color: #b8d8ff;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  background: #ffffff;
+  margin: 5px 0;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.menu a,
+.logout-link {
+  text-decoration: none;
+  color: #eaf4ff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu a:hover,
+.logout-link:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.menu a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.menu-cta {
+  background: #ffffff;
+  color: #004a92 !important;
+}
+
+.menu-cta:hover {
+  background: #eaf4ff;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .navbar-inner {
+    flex-wrap: wrap;
+  }
+
+  .brand-logo {
+    width: 58px;
+    height: 58px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .menu {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu a,
+  .logout-link {
+    text-align: left;
+  }
+}

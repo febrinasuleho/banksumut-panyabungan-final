@@ -1,0 +1,247 @@
+.beranda-clean {
+  background: #f4f8ff;
+  color: #153a66;
+}
+
+.beranda-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.beranda-hero {
+  background: linear-gradient(120deg, #0a3d7a 0%, #0f5cab 55%, #1b75ca 100%);
+  padding: 72px 0 64px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.hero-main {
+  color: #ffffff;
+}
+
+.hero-tag {
+  margin: 0;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.hero-main h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(30px, 5vw, 50px);
+  line-height: 1.1;
+}
+
+.hero-desc {
+  margin: 0;
+  max-width: 640px;
+  line-height: 1.7;
+  color: #e2efff;
+}
+
+.hero-actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 11px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #0d4f95;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #c7daef;
+  color: #1f568f;
+}
+
+.hero-actions .btn-outline {
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+}
+
+.hero-highlights {
+  margin-top: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.hero-highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #d8eaff;
+}
+
+.hero-info-card {
+  background: rgba(5, 35, 73, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 22px;
+  color: #e3f0ff;
+}
+
+.hero-info-card h3 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.address-text {
+  margin: 10px 0 8px;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.info-note {
+  margin: 0;
+  color: #cfe3ff;
+}
+
+.hero-info-card a {
+  margin-top: 14px;
+  display: inline-flex;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.beranda-section {
+  padding: 54px 0;
+}
+
+.section-soft {
+  background: #eef5ff;
+}
+
+.section-head h2 {
+  margin: 0;
+  color: #103966;
+}
+
+.section-head p {
+  margin: 10px 0 0;
+  color: #4d6a8c;
+}
+
+.card-grid {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.layanan-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.produk-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.beranda-card {
+  background: #ffffff;
+  border: 1px solid #e0eaf6;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 18px rgba(9, 50, 97, 0.08);
+}
+
+.card-icon {
+  color: #0f5cab;
+  font-size: 24px;
+}
+
+.beranda-card h3 {
+  margin: 10px 0 8px;
+  color: #173f71;
+}
+
+.beranda-card p {
+  margin: 0;
+  color: #4c6789;
+  line-height: 1.6;
+}
+
+.beranda-card a {
+  margin-top: 12px;
+  display: inline-flex;
+  text-decoration: none;
+  color: #0f5ba9;
+  font-weight: 700;
+}
+
+.kontak-box {
+  background: #ffffff;
+  border: 1px solid #dfe9f6;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.kontak-box h2 {
+  margin: 0;
+  color: #123c6d;
+}
+
+.kontak-box p {
+  margin: 10px 0 0;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #385a80;
+}
+
+.kontak-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 930px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kontak-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .beranda-container {
+    padding: 0 14px;
+  }
+
+  .beranda-hero {
+    padding: 56px 0 50px;
+  }
+
+  .beranda-section {
+    padding: 42px 0;
+  }
+}
