@@ -33,10 +33,15 @@ ChartJS.register(
   Legend
 );
 
+const DEFAULT_SALDO = 3500000;
 const getStoredSaldo = () => {
   const raw = localStorage.getItem("saldo");
   const parsed = Number(raw);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 3500000;
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    localStorage.setItem("saldo", String(DEFAULT_SALDO));
+    return DEFAULT_SALDO;
+  }
+  return parsed;
 };
 
 const monthMap = {
@@ -321,6 +326,14 @@ function Dashboard() {
     }
   };
 
+  const handleResetSaldo = () => {
+    const confirmReset = window.confirm("Setel saldo ke nilai awal?");
+    if (!confirmReset) return;
+    localStorage.setItem("saldo", String(DEFAULT_SALDO));
+    setSaldo(DEFAULT_SALDO);
+    window.dispatchEvent(new Event("saldoUpdated"));
+  };
+
   return (
     <div className="dashboard-page">
       <aside className="dashboard-sidebar">
@@ -383,6 +396,9 @@ function Dashboard() {
                 onClick={handleCopyAccountNumber}
               >
                 {isCopiedAccount ? "Tersalin" : "Salin"}
+              </button>
+              <button type="button" className="reset-saldo-btn" onClick={handleResetSaldo}>
+                Reset Saldo
               </button>
             </div>
           </div>
