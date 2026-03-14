@@ -79,9 +79,7 @@ function VisiMisi() {
               <FaBullseye /> Visi
             </h2>
             <p>
-              Menjadi bank andalan daerah dan mitra utama masyarakat dalam
-              layanan keuangan yang unggul, terpercaya, serta berkontribusi
-              nyata terhadap pembangunan ekonomi Sumatera Utara.
+            Menjadi Bank pilihan Utama yang Solid dan Unggul sebagai Mitra Usaha dan Pembangunan.
             </p>
           </article>
 
@@ -90,10 +88,10 @@ function VisiMisi() {
               <FaFlagCheckered /> Misi
             </h2>
             <ul className="public-list">
-              <li>Menyediakan layanan perbankan yang profesional dan berorientasi nasabah.</li>
-              <li>Mendorong inovasi digital untuk kemudahan dan kenyamanan layanan.</li>
-              <li>Meningkatkan kontribusi aktif terhadap pertumbuhan ekonomi daerah.</li>
-              <li>Menguatkan tata kelola perusahaan yang sehat dan berkelanjutan.</li>
+              <li>Mengelola keuangan pemerintah dan masyarakat secara professional berdasarkan prinsip kehati-hatian.</li>
+              <li>Memberikan layanan keuangan terbaik untuk mendukung kemaslahatan usaha dan pembangunan daerah.</li>
+              <li>Mendukung program keuangan berkelanjutan sesuai prinsip Environment, Social, & Governance (ESG).</li>
+              <li>Menciptakan intellectual capital yang unggul dengan mewujudkan budaya perusahaan yang SMART dan TERBAIK.</li>
             </ul>
           </article>
         </div>

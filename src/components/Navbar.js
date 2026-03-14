@@ -6,14 +6,28 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const isLogin = localStorage.getItem("isLogin") === "true";
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("isLogin") === "true");
 
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const syncLogin = () => {
+      setIsLogin(localStorage.getItem("isLogin") === "true");
+    };
+
+    window.addEventListener("storage", syncLogin);
+    syncLogin();
+
+    return () => {
+      window.removeEventListener("storage", syncLogin);
+    };
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("isLogin");
+    setIsLogin(false);
     navigate("/login", { replace: true });
   };
 

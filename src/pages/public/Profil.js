@@ -13,8 +13,14 @@ import {
 } from "react-icons/fa";
 import "./PublicPages.css";
 import ruangOperasionalImg from "./ruang-operasional.jpg";
+import pemasaranImg from "./pemasaran.jpg";
+import tellerAreaImg from "./teller-area.jpg";
+import customerServiceImg from "./costumer-service.jpg";
+import ruangAdministrasiImg from "./ruang-administrasi.jpg";
+import areaLakaImg from "./area-laka.jpg";
+import kantorKcpImg from "./banksumut-kc panyabungan.jpg";
 
-const OFFICE_IMAGE_PATH = "/kantor-bank-sumut-kcp-panyabungan.jpg";
+const OFFICE_IMAGE_PATH = kantorKcpImg;
 
 const highlights = [
   {
@@ -62,29 +68,34 @@ const gallery = [
     subtitle:
       "Menangani proses analisis kredit, persetujuan pinjaman, dan pengawasan pembiayaan.",
     theme: "theme-b",
+    image: areaLakaImg,
   },
   {
     title: "Ruang Pemasaran",
     subtitle:
       "Bertanggung jawab mempromosikan produk perbankan dan mencari nasabah baru.",
     theme: "theme-c",
+    image: pemasaranImg,
   },
   {
     title: "Customer Service",
     subtitle:
       "Melayani kebutuhan informasi, pembukaan rekening, dan penanganan keluhan nasabah.",
     theme: "theme-d",
+    image: customerServiceImg,
   },
   {
     title: "Teller Area",
     subtitle:
       "Melayani transaksi setoran, penarikan, dan transfer dana nasabah secara langsung.",
     theme: "theme-e",
+    image: tellerAreaImg,
   },
   {
     title: "Ruang Administrasi",
     subtitle: "Mengelola dokumen, arsip, dan administrasi internal kantor cabang.",
     theme: "theme-f",
+    image: ruangAdministrasiImg,
   },
 ];
 
@@ -207,8 +218,6 @@ function Profil() {
           <article className="public-card office-photo-card">
             <h3>Foto Kantor Bank Sumut KC Panyabungan</h3>
             <p>
-              Area ini untuk menampilkan foto gedung kantor utama. Silakan
-              ganti file gambar sesuai foto terbaru kantor.
             </p>
             <div className="office-photo-wrap">
               <img
@@ -217,9 +226,6 @@ function Profil() {
                 className="office-photo"
               />
             </div>
-            <small>
-              Gunakan file: <code>public/kantor-bank-sumut-kcp-panyabungan.jpg</code>
-            </small>
           </article>
         </div>
       </section>

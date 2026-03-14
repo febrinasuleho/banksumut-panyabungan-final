@@ -20,8 +20,8 @@ import Dashboard from "./pages/private/Dashboard";
 import PengajuanKredit from "./pages/private/PengajuanKredit";
 import Pengaduan from "./pages/private/Pengaduan";
 import StatusLayanan from "./pages/private/StatusLayanan";
-import Transfer from "./Transfer";
-import Rekening from "./Rekening";
+import Transfer from "./pages/private/Transfer";
+import Rekening from "./pages/private/Rekening";
 
 // Login
 import Login from "./pages/Login";

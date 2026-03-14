@@ -23,6 +23,7 @@ import {
   FaTrashAlt,
 } from "react-icons/fa";
 import "./Dashboard.css";
+import { clearTransaksi, getSaldo, getTransaksi } from "../../services/api";
 
 ChartJS.register(
   CategoryScale,
@@ -34,15 +35,6 @@ ChartJS.register(
 );
 
 const DEFAULT_SALDO = 3500000;
-const getStoredSaldo = () => {
-  const raw = localStorage.getItem("saldo");
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed) || parsed <= 0) {
-    localStorage.setItem("saldo", String(DEFAULT_SALDO));
-    return DEFAULT_SALDO;
-  }
-  return parsed;
-};
 
 const monthMap = {
   jan: 0,
@@ -109,8 +101,10 @@ function Dashboard() {
   const navigate = useNavigate();
   const accountNumber = "1234 5678 9012";
   const [showSaldo, setShowSaldo] = useState(true);
-  const [saldo, setSaldo] = useState(getStoredSaldo);
+  const [saldo, setSaldo] = useState(DEFAULT_SALDO);
   const [historyVersion, setHistoryVersion] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const [isLoadingSaldo, setIsLoadingSaldo] = useState(true);
   const [activeHistoryFilter, setActiveHistoryFilter] = useState("all");
   const [showKpiHistoryModal, setShowKpiHistoryModal] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
@@ -122,12 +116,24 @@ function Dashboard() {
 
   useEffect(() => {
     const syncData = () => {
-      setSaldo(getStoredSaldo());
-      setHistoryVersion((prev) => prev + 1);
+      Promise.all([getSaldo(), getTransaksi()])
+        .then(([saldoRes, trxRes]) => {
+          setSaldo(saldoRes.saldo);
+          setTransactions(trxRes.transaksi || []);
+          setIsLoadingSaldo(false);
+          setHistoryVersion((prev) => prev + 1);
+        })
+        .catch(() => {
+          setSaldo(DEFAULT_SALDO);
+          setTransactions([]);
+          setIsLoadingSaldo(false);
+        });
     };
 
     window.addEventListener("focus", syncData);
     window.addEventListener("saldoUpdated", syncData);
+
+    syncData();
 
     return () => {
       window.removeEventListener("focus", syncData);
@@ -139,10 +145,9 @@ function Dashboard() {
     setPage(1);
   }, [period, searchQuery]);
 
-  const transaksiData = JSON.parse(localStorage.getItem("transaksi")) || [];
-  const allTransactions = (transaksiData.length > 0 ? transaksiData : fallbackTransactions)
+  const allTransactions = (transactions.length > 0 ? transactions : fallbackTransactions)
     .map((trx, index) => ({
-      id: `${trx.tanggal}-${trx.jenis}-${index}-${historyVersion}`,
+      id: trx._id || `${trx.tanggal}-${trx.jenis}-${index}-${historyVersion}`,
       ...trx,
       parsedDate: trx.timestamp ? new Date(trx.timestamp) : parseTransactionDate(trx.tanggal),
       jumlah: Number(trx.jumlah),
@@ -253,9 +258,15 @@ function Dashboard() {
     const confirmClear = window.confirm("Hapus semua riwayat transaksi?");
     if (!confirmClear) return;
 
-    localStorage.removeItem("transaksi");
-    setPage(1);
-    setHistoryVersion((prev) => prev + 1);
+    clearTransaksi()
+      .then(() => {
+        setTransactions([]);
+        setPage(1);
+        setHistoryVersion((prev) => prev + 1);
+      })
+      .catch(() => {
+        alert("Gagal menghapus riwayat transaksi.");
+      });
   };
 
   const kpiHistoryTransactions = transactionsByPeriod.filter((trx) => {
@@ -326,13 +337,6 @@ function Dashboard() {
     }
   };
 
-  const handleResetSaldo = () => {
-    const confirmReset = window.confirm("Setel saldo ke nilai awal?");
-    if (!confirmReset) return;
-    localStorage.setItem("saldo", String(DEFAULT_SALDO));
-    setSaldo(DEFAULT_SALDO);
-    window.dispatchEvent(new Event("saldoUpdated"));
-  };
 
   return (
     <div className="dashboard-page">
@@ -387,7 +391,9 @@ function Dashboard() {
         <section className="saldo-card">
           <div>
             <h4>Saldo Rekening</h4>
-            <h1>{showSaldo ? formatRupiah(saldo) : "********"}</h1>
+            <h1>
+              {showSaldo ? (isLoadingSaldo ? "Memuat..." : formatRupiah(saldo)) : "********"}
+            </h1>
             <div className="account-copy-row">
               <small>No Rekening: {accountNumber}</small>
               <button
@@ -396,9 +402,6 @@ function Dashboard() {
                 onClick={handleCopyAccountNumber}
               >
                 {isCopiedAccount ? "Tersalin" : "Salin"}
-              </button>
-              <button type="button" className="reset-saldo-btn" onClick={handleResetSaldo}>
-                Reset Saldo
               </button>
             </div>
           </div>

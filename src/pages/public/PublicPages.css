@@ -199,7 +199,8 @@
   display: block;
   width: 100%;
   height: clamp(220px, 32vw, 380px);
-  object-fit: cover;
+  object-fit: contain;
+  background: #f5f9ff;
 }
 
 .office-photo-card small {
