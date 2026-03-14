@@ -98,6 +98,54 @@ function Transfer() {
       });
   };
 
+  const buildReceiptText = (data) => {
+    return [
+      "BUKTI TRANSAKSI BANK SUMUT KC PANYABUNGAN",
+      "-----------------------------------------",
+      `Referensi  : ${data.referensi}`,
+      `Tanggal    : ${data.tanggal}`,
+      `Penerima   : ${data.namaPenerima}`,
+      `Rekening   : ${data.rekeningTujuan}`,
+      `Jumlah     : ${formatRupiah(data.jumlah)}`,
+      `Status     : ${data.status}`,
+      `Metode     : ${data.metode}`,
+      `Biaya Admin: ${formatRupiah(data.biayaAdmin)}`,
+      `Catatan    : ${data.catatan}`,
+      `Saldo Akhir: ${formatRupiah(data.saldoTersisa)}`,
+    ].join("\n");
+  };
+
+  const handleShareReceipt = async () => {
+    if (!receiptData) return;
+
+    const receiptText = buildReceiptText(receiptData);
+    const fileName = `bukti-${receiptData.referensi}.txt`;
+    const file = new File([receiptText], fileName, { type: "text/plain" });
+
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          title: "Bukti Transfer Bank Sumut",
+          text: "Berikut bukti transfer.",
+          files: [file],
+        });
+        return;
+      } catch (error) {
+        // fallback to download
+      }
+    }
+
+    const blob = new Blob([receiptText], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = fileName;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="service-page">
       <div className="service-container">
@@ -165,7 +213,14 @@ function Transfer() {
               <p><strong>Biaya Admin:</strong> {formatRupiah(receiptData.biayaAdmin)}</p>
               <p><strong>Catatan:</strong> {receiptData.catatan}</p>
               <p><strong>Saldo Tersisa:</strong> {formatRupiah(receiptData.saldoTersisa)}</p>
-              <button className="service-button" onClick={() => setShowReceipt(false)}>Tutup</button>
+              <div className="receipt-actions">
+                <button className="service-button" onClick={handleShareReceipt}>
+                  Bagikan Bukti
+                </button>
+                <button className="service-button" onClick={() => setShowReceipt(false)}>
+                  Tutup
+                </button>
+              </div>
             </div>
           </div>
         )}
